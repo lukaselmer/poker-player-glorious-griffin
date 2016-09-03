@@ -16,4 +16,10 @@ class WinProbabilityStrategy < Strategy
   def call?
     @win_probability < 0.7
   end
+
+  def wished_value_to_raise
+    return minimum_raise * 2 if @win_probability >= 0.9
+    return minimum_raise * 1.5 if @win_probability >= 0.8
+    minimum_raise
+  end
 end
