@@ -1,7 +1,12 @@
 require_relative 'strategy'
 require_relative 'strategies/random_strategy'
+require_relative 'strategies/win_probability_strategy'
+require_relative 'strategies/win_probability_calculator'
+require_relative 'card_repository'
 require_relative 'game_state'
 require_relative 'game'
+require_relative 'hand'
+require_relative 'other_player'
 
 class Player
   GIT_RELEASE = `git log --pretty=format:\"%h\" -1`.freeze
