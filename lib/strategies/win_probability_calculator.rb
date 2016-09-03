@@ -1,12 +1,8 @@
 require_relative '../card_repository'
 
-class WinProbability
+class WinProbabilityCalculator
   CARDS = CardRepository.new.all
   MONTE_CARLO_ITERATIONS = 1000
-
-  def reset_cards
-    @available_cards = CARDS
-  end
 
   def calculate_win_probability(my_hidden_cards, community_cards)
     my_hand = my_hidden_cards + community_cards
@@ -15,6 +11,12 @@ class WinProbability
       calculate_single_run(my_hand, community_cards)
     end
     possible_outcomes.inject(&:+) / MONTE_CARLO_ITERATIONS.to_f
+  end
+
+  private
+
+  def reset_cards
+    @available_cards = CARDS
   end
 
   def calculate_single_run(my_hand, community_cards)
