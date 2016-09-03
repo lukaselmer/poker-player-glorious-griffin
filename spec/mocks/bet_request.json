@@ -14,7 +14,16 @@
       "stack": 1000,
       "status": "active",
       "bet": 0,
-      "hole_cards": [],
+      "hole_cards": [
+        {
+          "rank": "6",
+          "suit": "hearts"
+        },
+        {
+          "rank": "K",
+          "suit": "spades"
+        }
+      ],
       "version": "Version name 2",
       "id": 1
     }

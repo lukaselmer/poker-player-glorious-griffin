@@ -11,6 +11,17 @@ RSpec.describe Player do
         expect(result).to eq(0)
       end
     end
+
+    it 'raises on starting ace' do
+      player = Player.new
+      game_state = GameStateMock.new.for_bet_request
+      game_state[:players]
+
+      1000.times do
+        result = player.bet_request(GameStateMock.new.for_bet_request)
+        expect(result).to eq(0)
+      end
+    end
   end
 
   describe 'showdown' do
