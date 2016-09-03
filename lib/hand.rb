@@ -8,6 +8,11 @@ class Hand
     0.5
   end
 
+  def dummy
+    # op there is L
+    # below here is J
+  end
+
   def flush?
     @hand.map { |card| card['suit'] }.uniq.size == 1
   end
