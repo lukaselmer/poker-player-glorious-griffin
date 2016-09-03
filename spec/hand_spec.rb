@@ -66,5 +66,15 @@ RSpec.describe Hand do
         expect(Hand.new(straight)).not_to be_flush
       end
     end
+
+    describe '#pair?' do
+      it 'recognizes' do
+        expect(Hand.new(pair)).to be_pair
+      end
+
+      it 'recognizes NOT' do
+        expect(Hand.new(straight)).not_to be_pair
+      end
+    end
   end
 end

@@ -11,4 +11,9 @@ class Hand
   def flush?
     @hand.map { |card| card['suit'] }.uniq.size == 1
   end
+
+  def pair?
+    ranks = @hand.map { |card| card['rank'] }
+    ranks.uniq.size == (@hand.size - 1)
+  end
 end
