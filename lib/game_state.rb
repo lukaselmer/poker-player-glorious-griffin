@@ -26,6 +26,14 @@ class GameState
     @game_state_json['players'].select { |player| player if player['name'] == name }.first
   end
 
+  def my_cards
+    cards('Glorious Griffin')
+  end
+
+  def community_cards
+    @game_state_json['community_cards']
+  end
+
   def cards(player_name)
     extract_player(player_name)['hole_cards']
   end

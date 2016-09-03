@@ -5,7 +5,7 @@ require_relative 'game'
 
 class Player
   GIT_RELEASE = `git log --pretty=format:\"%h\" -1`.freeze
-  VERSION = "Two Griffins #{Time.now} #{GIT_RELEASE} #{ENV['SOURCE_VERSION']}".freeze
+  VERSION = "Glorious Griffin #{Time.now} #{GIT_RELEASE} #{ENV['SOURCE_VERSION']}".freeze
 
   def initialize
     @games = {}
