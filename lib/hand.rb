@@ -105,11 +105,6 @@ class Hand
     return 0.3 if includes_rank?('2')
   end
 
-  def dummy
-    # op there is L
-    # below here is J
-  end
-
   def flush?
     @cache[:flush] ||= @suites.uniq.size == 1
   end

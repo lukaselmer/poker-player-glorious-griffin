@@ -16,7 +16,7 @@ class WinProbabilityCalculator
   private
 
   def reset_cards
-    @available_cards = CardRepository.new.all
+    @available_cards = CardRepository::ALL
   end
 
   def calculate_single_run(my_hand, community_cards)

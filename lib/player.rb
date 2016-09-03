@@ -1,6 +1,7 @@
 require_relative 'strategy'
 require_relative 'strategies/random_strategy'
 require_relative 'hand'
+require_relative 'card'
 require_relative 'card_repository'
 require_relative 'strategies/win_probability_calculator'
 require_relative 'strategies/win_probability_strategy'

@@ -1,5 +1,5 @@
 class CardRepository
-  def all
+  def self.all
     suits = %w(clubs spades hearts diamonds)
     ranks = %w(2 3 4 5 6 7 8 9 10 J Q K A)
 
@@ -10,4 +10,6 @@ class CardRepository
       }
     end
   end
+
+  ALL = CardRepository.all
 end
