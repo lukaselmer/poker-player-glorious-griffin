@@ -1,10 +1,14 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/AbcSize
 class Hand
   def initialize(json_hand)
     @hand = json_hand
   end
 
   def strength
+    base_strength + high_card_value
+  end
+
+  def base_strength
     return 10 if royal_flush?
     return 9 if straight_flush?
     return 8 if four_of_a_kind?
@@ -14,7 +18,6 @@ class Hand
     return 4 if three_of_a_kind?
     return 3 if two_pair?
     return 2 if pair?
-    return 1 if high_card?
     0
   end
 
@@ -78,8 +81,20 @@ class Hand
     counted_ranks.count { |r| r.last == 2 } == 2
   end
 
-  def high_card?
-    # code here
+  def high_card_value
+    return 0.9 if includes_rank?('A')
+    return 0.85 if includes_rank?('K')
+    return 0.8 if includes_rank?('Q')
+    return 0.75 if includes_rank?('J')
+    return 0.7 if includes_rank?('10')
+    return 0.65 if includes_rank?('9')
+    return 0.6 if includes_rank?('8')
+    return 0.55 if includes_rank?('7')
+    return 0.5 if includes_rank?('6')
+    return 0.45 if includes_rank?('5')
+    return 0.4 if includes_rank?('4')
+    return 0.35 if includes_rank?('3')
+    return 0.3 if includes_rank?('2')
   end
 
   def dummy
