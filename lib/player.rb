@@ -1,4 +1,5 @@
 require_relative 'strategy'
+require_relative 'strategies/random_strategy'
 require_relative 'game_state'
 
 class Player
@@ -7,7 +8,7 @@ class Player
 
   def bet_request(game_state_raw)
     @game_state = GameState.new(game_state_raw)
-    strategy = Strategy.new(@game_state)
+    strategy = RandomStrategy.new(@game_state)
 
     return 0 if strategy.fold?
     return call_value if strategy.check?

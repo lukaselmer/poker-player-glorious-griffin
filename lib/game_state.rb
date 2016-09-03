@@ -11,7 +11,7 @@ class GameState
   end
 
   def max_players_bet
-    @players.max_by(&:bet)
+    @players.max_by(&:bet).bet
   end
 
   def call_value
