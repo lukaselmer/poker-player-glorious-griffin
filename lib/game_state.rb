@@ -18,8 +18,8 @@ class GameState
     current_buy_in - max_players_bet
   end
 
-  def raise_value(raise_by)
-    call_value + raise_by
+  def game_id
+    @game_state_json['game_id']
   end
 
   def extract_player(name)
