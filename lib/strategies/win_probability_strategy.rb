@@ -1,4 +1,5 @@
 require_relative '../strategy'
+require_relative 'win_probability_calculator'
 
 class WinProbabilityStrategy < Strategy
   def initialize(game_state)
