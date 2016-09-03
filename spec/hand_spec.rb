@@ -34,6 +34,16 @@ RSpec.describe Hand do
     ]
   end
 
+  let(:full_house) do
+    [
+      { 'suit' => 'diamonds', 'rank' => '2' },
+      { 'suit' => 'diamonds', 'rank' => '5' },
+      { 'suit' => 'spades', 'rank' => '5' },
+      { 'suit' => 'hearts', 'rank' => '5' },
+      { 'suit' => 'clubs', 'rank' => '2' }
+    ]
+  end
+
   let(:three_of_a_kind) do
     [
       { 'suit' => 'hearts', 'rank' => '8' },
@@ -77,16 +87,6 @@ RSpec.describe Hand do
       expect(my_hand.win_probability(other_hand)).to eq(1)
     end
 
-    describe '#flush?' do
-      it 'recognizes' do
-        expect(Hand.new(flush)).to be_flush
-      end
-
-      it 'recognizes NOT' do
-        expect(Hand.new(straight)).not_to be_flush
-      end
-    end
-
     describe '#four_of_a_kind?' do
       it 'recognizes' do
         expect(Hand.new(four_of_a_kind)).to be_four_of_a_kind
@@ -94,6 +94,26 @@ RSpec.describe Hand do
 
       it 'recognizes NOT' do
         expect(Hand.new(straight)).not_to be_four_of_a_kind
+      end
+    end
+
+    describe '#full_house?' do
+      it 'recognizes' do
+        expect(Hand.new(full_house)).to be_full_house
+      end
+
+      it 'recognizes NOT' do
+        expect(Hand.new(straight)).not_to be_full_house
+      end
+    end
+
+    describe '#flush?' do
+      it 'recognizes' do
+        expect(Hand.new(flush)).to be_flush
+      end
+
+      it 'recognizes NOT' do
+        expect(Hand.new(straight)).not_to be_flush
       end
     end
 

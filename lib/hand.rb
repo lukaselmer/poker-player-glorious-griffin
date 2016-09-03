@@ -42,7 +42,9 @@ class Hand
   end
 
   def full_house?
-    # code here
+    ranks = @hand.map { |card| card['rank'] }
+    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    (counted_ranks.count { |r| r.last == 3 } == 1) && (counted_ranks.count { |r| r.last == 2 } == 1)
   end
 
   def straight?
