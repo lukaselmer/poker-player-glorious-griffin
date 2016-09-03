@@ -8,7 +8,7 @@ class Strategy
   end
 
   def call?
-    @game_state.cards('Glorious Griffin').any { |card| card['rank'] == 'A' }
+    false
   end
 
   def wished_value_to_raise
