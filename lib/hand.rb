@@ -28,11 +28,11 @@ class Hand
   end
 
   def royal_flush?
-    # code here
+    straight_flush? && includes_rank?('A')
   end
 
   def straight_flush?
-    # code here
+    straight? && flush?
   end
 
   def four_of_a_kind?
@@ -48,7 +48,22 @@ class Hand
   end
 
   def straight?
-    # code here
+    includes_ranks?('A K Q J 10') ||
+      includes_ranks?('K Q J 10 9') ||
+      includes_ranks?('J 10 9 8') ||
+      includes_ranks?('10 9 8 7 6') ||
+      includes_ranks?('9 8 7 6 5') ||
+      includes_ranks?('8 7 6 5 4') ||
+      includes_ranks?('7 6 5 4 3') ||
+      includes_ranks?('6 5 4 3 2')
+  end
+
+  def includes_ranks?(ranks)
+    ranks.split(' ').all? { |rank| includes_rank?(rank) }
+  end
+
+  def includes_rank?(rank)
+    @hand.any? { |card| card['rank'] == rank }
   end
 
   def three_of_a_kind?
