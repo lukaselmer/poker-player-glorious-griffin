@@ -1,8 +1,8 @@
 require_relative '../lib/hand'
 
 RSpec.describe Hand do
-  describe 'sort' do
-    it 'returns probability' do
+  describe '#rank_against' do
+    it 'returns a probability' do
       my_hand = Hand.new(nil)
       other_hand = Hand.new(nil)
 

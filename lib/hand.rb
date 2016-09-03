@@ -1,5 +1,6 @@
 class Hand
   def initialize(raw_hand)
+    @hand = raw_hand
   end
 
   def rank_against(_other_hand)
