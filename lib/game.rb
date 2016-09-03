@@ -3,7 +3,7 @@ class Game
 
   def initialize
     @strategy_class = RandomStrategy
-    #@strategy_class = WinProbabilityStrategy
+    # @strategy_class = WinProbabilityStrategy
   end
 
   def strategy
