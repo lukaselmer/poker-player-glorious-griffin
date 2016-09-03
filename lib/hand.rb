@@ -2,6 +2,8 @@
 class Hand
   def initialize(json_hand)
     @hand = json_hand
+    @ranks = @hand.map { |card| card['rank'] }
+    @suites = @hand.map { |card| card['suit'] }
     @cache = {}
   end
 
@@ -44,14 +46,12 @@ class Hand
   end
 
   def four_of_a_kind?
-    ranks = @hand.map { |card| card['rank'] }
-    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    counted_ranks = @ranks.uniq.map { |i| [i, @ranks.count(i)] }
     @cache[:four_of_a_kind] ||= counted_ranks.count { |r| r.last == 4 } == 1
   end
 
   def full_house?
-    ranks = @hand.map { |card| card['rank'] }
-    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    counted_ranks = @ranks.uniq.map { |i| [i, @ranks.count(i)] }
     full_house = (counted_ranks.count { |r| r.last == 3 } == 1) && (counted_ranks.count { |r| r.last == 2 } == 1)
     @cache[:full_house] ||= full_house
   end
@@ -76,14 +76,12 @@ class Hand
   end
 
   def three_of_a_kind?
-    ranks = @hand.map { |card| card['rank'] }
-    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    counted_ranks = @ranks.uniq.map { |i| [i, @ranks.count(i)] }
     @cache[:three_of_a_kind] ||= counted_ranks.count { |r| r.last == 3 } == 1
   end
 
   def two_pair?
-    ranks = @hand.map { |card| card['rank'] }
-    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    counted_ranks = @ranks.uniq.map { |i| [i, @ranks.count(i)] }
     @cache[:two_pair] ||= counted_ranks.count { |r| r.last == 2 } == 2
   end
 
@@ -113,12 +111,10 @@ class Hand
   end
 
   def flush?
-    @cache[:flush] ||= @hand.map { |card| card['suit'] }.uniq.size == 1
+    @cache[:flush] ||= @suites.uniq.size == 1
   end
 
   def pair?
-    ranks = @hand.map { |card| card['rank'] }
-    pair = ranks.uniq.size == (@hand.size - 1)
-    @cache[:pair] ||= pair
+    @cache[:pair] ||= @ranks.uniq.size == (@hand.size - 1)
   end
 end
