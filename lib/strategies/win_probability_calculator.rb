@@ -2,7 +2,7 @@ require_relative '../card_repository'
 require_relative '../hand'
 
 class WinProbabilityCalculator
-  MONTE_CARLO_ITERATIONS = 1000
+  MONTE_CARLO_ITERATIONS = 20
 
   def calculate_win_probability(my_hidden_cards, community_cards)
     my_hand = my_hidden_cards + community_cards
