@@ -2,13 +2,18 @@
 class Hand
   def initialize(json_hand)
     @hand = json_hand
+    @cache = {}
   end
 
   def strength
-    base_strength + high_card_value
+    @cache[:strength] ||= base_strength + high_card_value
   end
 
   def base_strength
+    @cache[:base_strength] ||= calc_base_strength
+  end
+
+  def calc_base_strength
     return 10 if royal_flush?
     return 9 if straight_flush?
     return 8 if four_of_a_kind?
@@ -41,24 +46,25 @@ class Hand
   def four_of_a_kind?
     ranks = @hand.map { |card| card['rank'] }
     counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
-    counted_ranks.count { |r| r.last == 4 } == 1
+    @cache[:four_of_a_kind] ||= counted_ranks.count { |r| r.last == 4 } == 1
   end
 
   def full_house?
     ranks = @hand.map { |card| card['rank'] }
     counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
-    (counted_ranks.count { |r| r.last == 3 } == 1) && (counted_ranks.count { |r| r.last == 2 } == 1)
+    full_house = (counted_ranks.count { |r| r.last == 3 } == 1) && (counted_ranks.count { |r| r.last == 2 } == 1)
+    @cache[:full_house] ||= full_house
   end
 
   def straight?
-    includes_ranks?('A K Q J 10') ||
-      includes_ranks?('K Q J 10 9') ||
-      includes_ranks?('J 10 9 8') ||
-      includes_ranks?('10 9 8 7 6') ||
-      includes_ranks?('9 8 7 6 5') ||
-      includes_ranks?('8 7 6 5 4') ||
-      includes_ranks?('7 6 5 4 3') ||
-      includes_ranks?('6 5 4 3 2')
+    @cache[:straight] ||= includes_ranks?('A K Q J 10') ||
+                          includes_ranks?('K Q J 10 9') ||
+                          includes_ranks?('J 10 9 8') ||
+                          includes_ranks?('10 9 8 7 6') ||
+                          includes_ranks?('9 8 7 6 5') ||
+                          includes_ranks?('8 7 6 5 4') ||
+                          includes_ranks?('7 6 5 4 3') ||
+                          includes_ranks?('6 5 4 3 2')
   end
 
   def includes_ranks?(ranks)
@@ -66,22 +72,26 @@ class Hand
   end
 
   def includes_rank?(rank)
-    @hand.any? { |card| card['rank'] == rank }
+    @cache["includes_rank_#{rank}"] ||= @hand.any? { |card| card['rank'] == rank }
   end
 
   def three_of_a_kind?
     ranks = @hand.map { |card| card['rank'] }
     counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
-    counted_ranks.count { |r| r.last == 3 } == 1
+    @cache[:three_of_a_kind] ||= counted_ranks.count { |r| r.last == 3 } == 1
   end
 
   def two_pair?
     ranks = @hand.map { |card| card['rank'] }
     counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
-    counted_ranks.count { |r| r.last == 2 } == 2
+    @cache[:two_pair] ||= counted_ranks.count { |r| r.last == 2 } == 2
   end
 
   def high_card_value
+    @cache[:high_card_value] ||= calc_high_card_value
+  end
+
+  def calc_high_card_value
     return 0.9 if includes_rank?('A')
     return 0.85 if includes_rank?('K')
     return 0.8 if includes_rank?('Q')
@@ -103,11 +113,12 @@ class Hand
   end
 
   def flush?
-    @hand.map { |card| card['suit'] }.uniq.size == 1
+    @cache[:flush] ||= @hand.map { |card| card['suit'] }.uniq.size == 1
   end
 
   def pair?
     ranks = @hand.map { |card| card['rank'] }
-    ranks.uniq.size == (@hand.size - 1)
+    pair = ranks.uniq.size == (@hand.size - 1)
+    @cache[:pair] ||= pair
   end
 end

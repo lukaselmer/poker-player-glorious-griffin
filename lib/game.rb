@@ -2,7 +2,7 @@ class Game
   attr_accessor :game_state
 
   def initialize
-    @strategy_class = RandomStrategy
+    @strategy_class = WinProbabilityStrategy
   end
 
   def strategy
