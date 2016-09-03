@@ -1,4 +1,4 @@
-class CardExtractor
+class GameStateExtractor
   def initialize(player_name, game_state)
     @player_name = player_name
     @game_state = game_state
