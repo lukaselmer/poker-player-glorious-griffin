@@ -16,7 +16,7 @@ class WinProbabilityCalculator
   private
 
   def reset_cards
-    @available_cards = CardRepository.all
+    @available_cards = CardRepository.all.dup
   end
 
   def calculate_single_run(my_hand, community_cards)
@@ -37,9 +37,7 @@ class WinProbabilityCalculator
   end
 
   def remove_card(card)
-    @available_cards = @available_cards.reject do |current_card|
-      same_card?(card, current_card)
-    end
+    @available_cards.delete(card)
   end
 
   def same_card?(card, current_card)
