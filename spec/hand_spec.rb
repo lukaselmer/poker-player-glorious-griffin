@@ -24,7 +24,7 @@ RSpec.describe Hand do
     ]
   end
 
-  let(:two_pairs) do
+  let(:two_pair) do
     [
       { 'suit' => 'hearts', 'rank' => '8' },
       { 'suit' => 'hearts', 'rank' => '9' },
@@ -64,6 +64,16 @@ RSpec.describe Hand do
 
       it 'recognizes NOT' do
         expect(Hand.new(straight)).not_to be_flush
+      end
+    end
+
+    describe '#two_pair?' do
+      it 'recognizes' do
+        expect(Hand.new(two_pair)).to be_two_pair
+      end
+
+      it 'recognizes NOT' do
+        expect(Hand.new(straight)).not_to be_pair
       end
     end
 
