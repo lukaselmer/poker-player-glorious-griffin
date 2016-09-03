@@ -21,4 +21,12 @@ class GameState
   def raise_value(raise_by)
     call_value + raise_by
   end
+
+  def extract_player(name)
+    @game_state_json['players'].select { |player| player if player['name'] == name }.first
+  end
+
+  def cards(player_name)
+    extract_player(player_name)['hole_cards']
+  end
 end

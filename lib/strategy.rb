@@ -8,6 +8,6 @@ class Strategy
   end
 
   def check?
-    false
+    @game_state.cards('Glorious Griffin').any { |card| card['rank'] == 'A' }
   end
 end
