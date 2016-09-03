@@ -9,8 +9,6 @@ class Hand
   end
 
   def flush?
-    p @hand
-    p @hand.map { |card| card['suit']}
-    @hand.map { |card| card['suit']}.uniq.size == 1
+    @hand.map { |card| card['suit'] }.uniq.size == 1
   end
 end
