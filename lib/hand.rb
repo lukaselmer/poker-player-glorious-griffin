@@ -39,7 +39,9 @@ class Hand
   end
 
   def three_of_a_kind?
-    # code here
+    ranks = @hand.map { |card| card['rank'] }
+    counted_ranks = ranks.uniq.map { |i| [i, ranks.count(i)] }
+    counted_ranks.count { |r| r.last == 3 } == 1
   end
 
   def two_pair?
