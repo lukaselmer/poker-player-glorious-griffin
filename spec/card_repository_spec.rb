@@ -12,10 +12,16 @@ RSpec.describe CardRepository do
       expect(repository.all.size).to eq(52)
     end
 
-    it 'produces king hearst' do
+    it 'produces king hearts' do
       repository = CardRepository.new
       hearts_king = { 'suit': 'hearts', 'rank': 'K' }
       expect(repository.all).to include(hearts_king)
+    end
+
+    it 'produces 5 clubs' do
+      repository = CardRepository.new
+      clubs_5 = { 'suit': 'clubs', 'rank': '5' }
+      expect(repository.all).to include(clubs_5)
     end
   end
 end
