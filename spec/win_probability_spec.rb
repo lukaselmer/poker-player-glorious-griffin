@@ -5,7 +5,7 @@ require_relative 'mocks/game_state_mock'
 RSpec.describe WinProbabilityCalculator do
   describe 'bet_request' do
     it 'works with different community hands' do
-      possible_cards = CardRepository::ALL
+      possible_cards = CardRepository.all
       Array.new(3) do
         random_cards = possible_cards.shuffle[(0..[1, 2, 3, 4].sample)]
         my_hand = random_cards[0..1]

@@ -15,8 +15,8 @@ RSpec.describe GameState do
       extractor = GameState.new(game_state)
 
       card = extractor.cards('Glorious Griffin').first
-      expect(card['rank']).to eq('6')
-      expect(card['suit']).to eq('hearts')
+      expect(card.rank).to eq('6')
+      expect(card.suit).to eq('hearts')
     end
   end
 end

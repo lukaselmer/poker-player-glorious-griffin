@@ -6,71 +6,71 @@ require_relative '../lib/hand'
 RSpec.describe Hand do
   let(:straight) do
     [
-      { 'suit' => 'hearts', 'rank' => '2' },
-      { 'suit' => 'clubs', 'rank' => '3' },
-      { 'suit' => 'clubs', 'rank' => '4' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'spades', 'rank' => '6' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '2'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '3'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '4'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'spades', 'rank' => '6')
     ]
   end
 
   let(:flush) do
     [
-      { 'suit' => 'hearts', 'rank' => '8' },
-      { 'suit' => 'hearts', 'rank' => '9' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'hearts', 'rank' => 'J' },
-      { 'suit' => 'hearts', 'rank' => '2' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '9'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => 'J'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '2')
     ]
   end
 
   let(:four_of_a_kind) do
     [
-      { 'suit' => 'hearts', 'rank' => '8' },
-      { 'suit' => 'diamonds', 'rank' => '8' },
-      { 'suit' => 'spades', 'rank' => '8' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'clubs', 'rank' => '8' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'diamonds', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'spades', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '8')
     ]
   end
 
   let(:full_house) do
     [
-      { 'suit' => 'diamonds', 'rank' => '2' },
-      { 'suit' => 'diamonds', 'rank' => '5' },
-      { 'suit' => 'spades', 'rank' => '5' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'clubs', 'rank' => '2' }
+      CardRepository.find_card('suit' => 'diamonds', 'rank' => '2'),
+      CardRepository.find_card('suit' => 'diamonds', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'spades', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '2')
     ]
   end
 
   let(:three_of_a_kind) do
     [
-      { 'suit' => 'hearts', 'rank' => '8' },
-      { 'suit' => 'diamonds', 'rank' => '8' },
-      { 'suit' => 'clubs', 'rank' => '5' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'clubs', 'rank' => '8' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'diamonds', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '8')
     ]
   end
 
   let(:two_pair) do
     [
-      { 'suit' => 'hearts', 'rank' => '8' },
-      { 'suit' => 'hearts', 'rank' => '9' },
-      { 'suit' => 'clubs', 'rank' => '5' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'clubs', 'rank' => '8' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '9'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '8')
     ]
   end
 
   let(:pair) do
     [
-      { 'suit' => 'hearts', 'rank' => '8' },
-      { 'suit' => 'clubs', 'rank' => '8' },
-      { 'suit' => 'hearts', 'rank' => '5' },
-      { 'suit' => 'hearts', 'rank' => 'J' },
-      { 'suit' => 'hearts', 'rank' => '2' }
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'clubs', 'rank' => '8'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '5'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => 'J'),
+      CardRepository.find_card('suit' => 'hearts', 'rank' => '2')
     ]
   end
 

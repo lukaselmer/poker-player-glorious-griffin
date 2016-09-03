@@ -2,8 +2,8 @@
 class Hand
   def initialize(json_hand)
     @hand = json_hand
-    @ranks = @hand.map { |card| card['rank'] }
-    @suites = @hand.map { |card| card['suit'] }
+    @ranks = @hand.map(&:rank)
+    @suites = @hand.map(&:suit)
     @cache = {}
   end
 
@@ -72,7 +72,7 @@ class Hand
   end
 
   def includes_rank?(rank)
-    @cache["includes_rank_#{rank}"] ||= @hand.any? { |card| card['rank'] == rank }
+    @cache["includes_rank_#{rank}"] ||= @hand.any? { |card| card.rank == rank }
   end
 
   def three_of_a_kind?

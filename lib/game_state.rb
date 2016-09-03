@@ -4,6 +4,7 @@ class GameState
   def initialize(game_state_json)
     @game_state_json = game_state_json
     @players = @game_state_json['players'].map { |player| OtherPlayer.new(player) }
+    @community_cards = @game_state_json['community_cards']
   end
 
   def current_buy_in
@@ -31,11 +32,15 @@ class GameState
   end
 
   def community_cards
-    @game_state_json['community_cards']
+    wrap_cards(@community_cards)
   end
 
   def cards(player_name)
-    extract_player(player_name)['hole_cards']
+    wrap_cards(extract_player(player_name)['hole_cards'])
+  end
+
+  def wrap_cards(raw_cards)
+    raw_cards.map { |raw_card| CardRepository.find_card(raw_card) }
   end
 
   def minimum_raise

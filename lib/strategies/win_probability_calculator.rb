@@ -16,7 +16,7 @@ class WinProbabilityCalculator
   private
 
   def reset_cards
-    @available_cards = CardRepository::ALL
+    @available_cards = CardRepository.all
   end
 
   def calculate_single_run(my_hand, community_cards)
@@ -43,7 +43,7 @@ class WinProbabilityCalculator
   end
 
   def same_card?(card, current_card)
-    current_card['suit'] == card['suit'] && current_card['rank'] == card['rank']
+    current_card.suit == card.suit && current_card.rank == card.rank
   end
 
   def complete_hand(hand)
