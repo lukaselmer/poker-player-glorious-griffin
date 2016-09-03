@@ -1,7 +1,6 @@
 require_relative '../card_repository'
 
 class WinProbabilityCalculator
-  CARDS = CardRepository.new.all
   MONTE_CARLO_ITERATIONS = 1000
 
   def calculate_win_probability(my_hidden_cards, community_cards)
@@ -16,7 +15,7 @@ class WinProbabilityCalculator
   private
 
   def reset_cards
-    @available_cards = CARDS
+    @available_cards = CardRepository.new.all
   end
 
   def calculate_single_run(my_hand, community_cards)
@@ -37,7 +36,7 @@ class WinProbabilityCalculator
   end
 
   def remove_card(card)
-    @available_cards.delete_if do |current_card|
+    @available_cards = @available_cards.reject do |current_card|
       same_card?(card, current_card)
     end
   end
