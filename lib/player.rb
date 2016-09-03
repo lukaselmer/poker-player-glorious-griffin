@@ -6,10 +6,11 @@ class Player
   VERSION = "Two Griffins #{Time.now} #{GIT_RELEASE} #{ENV['SOURCE_VERSION']}".freeze
 
   def bet_request(game_state_raw)
-    strategy = Strategy.new(GameState.new(game_state_raw))
+    @game_state = GameState.new(game_state_raw)
+    strategy = Strategy.new(@game_state)
 
     return 0 if strategy.fold?
-    return check_amount if strategy.check?
+    return call_value if strategy.check?
     raise_amount
   end
 
@@ -19,11 +20,11 @@ class Player
 
   private
 
-  def check_amount
-    1
+  def call_value
+    @game_state.call_value
   end
 
   def raise_amount
-    1
+    @game_state.raise_value(1)
   end
 end
