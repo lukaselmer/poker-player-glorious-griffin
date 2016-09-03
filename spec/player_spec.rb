@@ -30,7 +30,7 @@ RSpec.describe Player do
 
       1000.times do
         result = player.showdown(GameStateMock.new.for_showdown)
-        expect(result).to be_nil
+        expect(result).to eq(0)
       end
     end
   end
