@@ -1,10 +1,8 @@
-class WinProbability
-  CARDS = [].freeze
-  MONTE_CARLO_ITERATIONS = 1000
+require_relative '../card_repository'
 
-  def initialize
-    reset_cards
-  end
+class WinProbability
+  CARDS = CardRepository.new.all
+  MONTE_CARLO_ITERATIONS = 1000
 
   def reset_cards
     @available_cards = CARDS
@@ -37,7 +35,13 @@ class WinProbability
   end
 
   def remove_card(card)
-    @available_cards.delete(card)
+    @available_cards.delete_if do |current_card|
+      same_card?(card, current_card)
+    end
+  end
+
+  def same_card?(card, current_card)
+    current_card['suit'] == card['suit'] && current_card['rank'] == card['rank']
   end
 
   def complete_hand(hand)
