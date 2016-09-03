@@ -14,13 +14,13 @@ RSpec.describe CardRepository do
 
     it 'produces king hearts' do
       repository = CardRepository.new
-      hearts_king = { 'suit': 'hearts', 'rank': 'K' }
+      hearts_king = { 'suit' => 'hearts', 'rank' => 'K' }
       expect(repository.all).to include(hearts_king)
     end
 
     it 'produces 5 clubs' do
       repository = CardRepository.new
-      clubs_5 = { 'suit': 'clubs', 'rank': '5' }
+      clubs_5 = { 'suit' => 'clubs', 'rank' => '5' }
       expect(repository.all).to include(clubs_5)
     end
   end

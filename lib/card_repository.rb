@@ -5,8 +5,8 @@ class CardRepository
 
     suits.product(ranks).map do |suit_rank|
       {
-        'suit': suit_rank.first,
-        'rank': suit_rank.last
+        'suit' => suit_rank.first,
+        'rank' => suit_rank.last
       }
     end
   end
