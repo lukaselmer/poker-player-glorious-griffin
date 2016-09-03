@@ -1,5 +1,3 @@
-require_relative '../strategy'
-
 class RandomStrategy < Strategy
   def initialize(game_state)
     super(game_state)

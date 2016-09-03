@@ -111,4 +111,3 @@ class Hand
     ranks.uniq.size == (@hand.size - 1)
   end
 end
-

@@ -1,4 +1,5 @@
 require_relative '../card_repository'
+require_relative '../hand'
 
 class WinProbabilityCalculator
   MONTE_CARLO_ITERATIONS = 1000
