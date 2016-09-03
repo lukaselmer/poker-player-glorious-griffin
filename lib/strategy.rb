@@ -11,7 +11,11 @@ class Strategy
     false
   end
 
-  def value_to_raise
+  def wished_value_to_raise
     1
+  end
+
+  def value_to_raise
+    [@game_state.minimum_raise, wished_value_to_raise].max
   end
 end

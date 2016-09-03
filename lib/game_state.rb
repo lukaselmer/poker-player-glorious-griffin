@@ -29,4 +29,8 @@ class GameState
   def cards(player_name)
     extract_player(player_name)['hole_cards']
   end
+
+  def minimum_raise
+    @game_state_json['minimum_raise']
+  end
 end
