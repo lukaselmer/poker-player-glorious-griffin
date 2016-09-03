@@ -1,10 +1,13 @@
 class Strategy
-  def initialize(bet_request, showdown)
-    @bet_request = bet_request
-    @showdown = showdown
+  def initialize(game_state)
+    @game_state = game_state
   end
 
   def fold?
     true
+  end
+
+  def check?
+    false
   end
 end

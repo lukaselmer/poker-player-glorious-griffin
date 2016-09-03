@@ -5,7 +5,7 @@ RSpec.describe Strategy do
   describe 'bet_request' do
     it 'returns a valid value' do
       mock = GameStateMock.new
-      strategy = Strategy.new(mock.for_bet_request, mock.for_showdown)
+      strategy = Strategy.new(mock.for_bet_request)
 
       1000.times do
         expect(strategy.fold?).to be_truthy
