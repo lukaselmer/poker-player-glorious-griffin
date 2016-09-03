@@ -4,11 +4,11 @@ require_relative '../hand'
 class WinProbabilityCalculator
   MONTE_CARLO_ITERATIONS = 1000
 
-  def calculate_win_probability(my_hidden_cards, community_cards)
+  def calculate_win_probability(my_hidden_cards, community_cards, number_of_active_players)
     my_hand = my_hidden_cards + community_cards
 
     possible_outcomes = Array.new(MONTE_CARLO_ITERATIONS) do
-      calculate_single_run(my_hand, community_cards)
+      calculate_single_run(my_hand, community_cards, number_of_active_players)
     end
     possible_outcomes.inject(&:+) / MONTE_CARLO_ITERATIONS.to_f
   end
@@ -19,7 +19,13 @@ class WinProbabilityCalculator
     @available_cards = CardRepository.all.dup
   end
 
-  def calculate_single_run(my_hand, community_cards)
+  def calculate_single_run(my_hand, community_cards, players)
+    return calculate_for_1_player(my_hand, community_cards, players) if players == 2
+    return calculate_for_2_players(my_hand, community_cards, players) if players == 3
+    calculate_for_3_players(my_hand, community_cards, players)
+  end
+
+  def calculate_for_3_players(my_hand, community_cards, _number_of_active_players)
     reset_cards
     remove_cards(my_hand)
     my_possible_hand = complete_hand(my_hand)
@@ -30,6 +36,25 @@ class WinProbabilityCalculator
     my_possible_hand.win_probability(possible_hand_1) *
       my_possible_hand.win_probability(possible_hand_2) *
       my_possible_hand.win_probability(possible_hand_3)
+  end
+
+  def calculate_for_2_players(my_hand, community_cards, _number_of_active_players)
+    reset_cards
+    remove_cards(my_hand)
+    my_possible_hand = complete_hand(my_hand)
+    possible_hand_1 = complete_hand(community_cards)
+    possible_hand_2 = complete_hand(community_cards)
+
+    my_possible_hand.win_probability(possible_hand_1) *
+      my_possible_hand.win_probability(possible_hand_2)
+  end
+
+  def calculate_for_1_player(my_hand, community_cards, _number_of_active_players)
+    reset_cards
+    remove_cards(my_hand)
+    my_possible_hand = complete_hand(my_hand)
+    possible_hand_1 = complete_hand(community_cards)
+    my_possible_hand.win_probability(possible_hand_1)
   end
 
   def remove_cards(hand)

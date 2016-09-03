@@ -11,7 +11,11 @@ RSpec.describe WinProbabilityCalculator do
         my_hand = random_cards[0..1]
         community_cards = random_cards[2..4]
 
-        probability = WinProbabilityCalculator.new.calculate_win_probability(my_hand, community_cards)
+        probability = WinProbabilityCalculator.new.calculate_win_probability(my_hand, community_cards, 4)
+        expect(probability).to be_within(0.5).of(0.5)
+        probability = WinProbabilityCalculator.new.calculate_win_probability(my_hand, community_cards, 3)
+        expect(probability).to be_within(0.5).of(0.5)
+        probability = WinProbabilityCalculator.new.calculate_win_probability(my_hand, community_cards, 2)
         expect(probability).to be_within(0.5).of(0.5)
       end
     end

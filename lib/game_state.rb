@@ -43,6 +43,10 @@ class GameState
     raw_cards.map { |raw_card| CardRepository.find_card(raw_card) }
   end
 
+  def number_of_active_players
+    @game_state_json['players'].select { |player| player if player['status'] == 'active' }.first
+  end
+
   def minimum_raise
     @game_state_json['minimum_raise']
   end

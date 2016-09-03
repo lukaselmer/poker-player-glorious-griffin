@@ -5,8 +5,11 @@ class WinProbabilityStrategy < Strategy
   def initialize(game_state)
     super(game_state)
     calc = WinProbabilityCalculator.new
-    @win_probability = calc.calculate_win_probability(game_state.my_cards,
-                                                      game_state.community_cards)
+    @win_probability = calc.calculate_win_probability(
+      game_state.my_cards,
+      game_state.community_cards,
+      game_state.number_of_active_players
+    )
   end
 
   def fold?
