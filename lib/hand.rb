@@ -1,20 +1,29 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
 class Hand
-  def initialize(hand)
-    @hand = hand
+  def initialize(json_hand)
+    @hand = json_hand
   end
 
-  def win_probability(_other_hand)
-    return 1 if royal_flush?
-    return 1 if straight_flush?
-    return 1 if four_of_a_kind?
-    return 1 if full_house?
-    return 1 if flush?
-    return 1 if straight?
-    return 1 if three_of_a_kind?
-    return 1 if two_pair?
-    return 1 if pair?
+  def strength
+    return 10 if royal_flush?
+    return 9 if straight_flush?
+    return 8 if four_of_a_kind?
+    return 7 if full_house?
+    return 6 if flush?
+    return 5 if straight?
+    return 4 if three_of_a_kind?
+    return 3 if two_pair?
+    return 2 if pair?
     return 1 if high_card?
+    0
+  end
+
+  def win_probability(other_hand)
+    my_strength = strength
+    other_hand_strength = other_hand.strength
+
+    return 1 if my_strength > other_hand_strength
+    return 0 if my_strength < other_hand_strength
     0.5
   end
 

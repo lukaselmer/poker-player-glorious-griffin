@@ -21,7 +21,7 @@ class WinProbabilityCalculator
   def calculate_single_run(my_hand, community_cards)
     reset_cards
     remove_cards(my_hand)
-    my_possible_hand = Hand.new(complete_hand(my_hand))
+    my_possible_hand = complete_hand(my_hand)
     possible_hand_1 = complete_hand(community_cards)
     possible_hand_2 = complete_hand(community_cards)
     possible_hand_3 = complete_hand(community_cards)
@@ -52,7 +52,7 @@ class WinProbabilityCalculator
       remove_card(additional_card)
       new_hand << additional_card
     end
-    new_hand
+    Hand.new(new_hand)
   end
 
   def random_card

@@ -64,14 +64,14 @@ RSpec.describe Hand do
     ]
   end
 
-  describe '#rank_against' do
+  describe '#win_probability' do
     it 'returns a probability' do
       my_hand = Hand.new(flush)
       other_hand = Hand.new(straight)
       expect(my_hand.win_probability(other_hand)).to be_between(0, 1)
     end
 
-    it 'lets straight win over flush' do
+    it 'lets flush win over straight' do
       my_hand = Hand.new(flush)
       other_hand = Hand.new(straight)
       expect(my_hand.win_probability(other_hand)).to eq(1)
