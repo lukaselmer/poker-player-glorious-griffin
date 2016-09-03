@@ -33,9 +33,9 @@ class Player
 
   def init_current_game(game_state_raw)
     game_state = GameState.new(game_state_raw)
-    # @games[game_state.game_id] ||= Game.new
-    # @current_game = @games[game_state.game_id]
-    @current_game = Game.new
+    @games[game_state.game_id] ||= Game.new
+    @current_game = @games[game_state.game_id]
+    # @current_game = Game.new
     @current_game.game_state = game_state
   end
 
