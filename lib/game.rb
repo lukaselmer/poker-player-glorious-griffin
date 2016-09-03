@@ -5,15 +5,7 @@ class Game
   attr_accessor :game_state
 
   def initialize
-    @strategy_class = [
-      WinProbabilityStrategy,
-      WinProbabilityStrategy,
-      WinProbabilityStrategy,
-      RandomStrategy
-    ].sample
-
-    # remove the following line as soon as the win probabilities are implemented
-    @strategy_class = RandomStrategy
+    @strategy_class = WinProbabilityStrategy
   end
 
   def strategy

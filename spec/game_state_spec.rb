@@ -14,7 +14,7 @@ RSpec.describe GameState do
       game_state = GameStateMock.new.for_bet_request
       extractor = GameState.new(game_state)
 
-      card = extractor.cards('Player 2').first
+      card = extractor.cards('Glorious Griffin').first
       expect(card['rank']).to eq('6')
       expect(card['suit']).to eq('hearts')
     end

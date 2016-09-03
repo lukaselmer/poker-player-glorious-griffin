@@ -6,7 +6,7 @@ RSpec.describe Player do
     it 'returns a valid value' do
       player = Player.new
 
-      1000.times do
+      2.times do
         result = player.bet_request(GameStateMock.new.for_bet_request)
         expect(result).to be_a(Numeric)
       end
@@ -17,7 +17,7 @@ RSpec.describe Player do
     it 'returns a valid value' do
       player = Player.new
 
-      1000.times do
+      2.times do
         result = player.showdown(GameStateMock.new.for_showdown)
         expect(result).to be_a(Numeric)
       end
