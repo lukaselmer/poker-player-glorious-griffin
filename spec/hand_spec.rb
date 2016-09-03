@@ -24,6 +24,16 @@ RSpec.describe Hand do
     ]
   end
 
+  let(:four_of_a_kind) do
+    [
+      { 'suit' => 'hearts', 'rank' => '8' },
+      { 'suit' => 'diamonds', 'rank' => '8' },
+      { 'suit' => 'spades', 'rank' => '8' },
+      { 'suit' => 'hearts', 'rank' => '5' },
+      { 'suit' => 'clubs', 'rank' => '8' }
+    ]
+  end
+
   let(:three_of_a_kind) do
     [
       { 'suit' => 'hearts', 'rank' => '8' },
@@ -74,6 +84,16 @@ RSpec.describe Hand do
 
       it 'recognizes NOT' do
         expect(Hand.new(straight)).not_to be_flush
+      end
+    end
+
+    describe '#four_of_a_kind?' do
+      it 'recognizes' do
+        expect(Hand.new(four_of_a_kind)).to be_four_of_a_kind
+      end
+
+      it 'recognizes NOT' do
+        expect(Hand.new(straight)).not_to be_four_of_a_kind
       end
     end
 
